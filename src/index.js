@@ -16,7 +16,7 @@ const createWindow = () => {
     }
   });
 
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   mainWindow.setMenuBarVisibility(false)
 };

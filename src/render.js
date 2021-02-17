@@ -1,15 +1,14 @@
-const fs = require("fs");
+const fs = require("fs")
 const {getCurrentWindow} = require('electron').remote;
 const path = require("path")
 
 console.log(path.join(__dirname, "..", "Kuvat"));
 let folderContents = fs.readdirSync(path.join(__dirname, "..", "Kuvat"))
-folderContents.pop()
-console.log("Folder Contents", folderContents);
+let ignoredFolderContents = folderContents.pop()
+console.log(`Folder Contents : ${folderContents}
+Ignored Folder Contents : ${ignoredFolderContents}`)
+
 switch (folderContents.length) {
-    case 0:
-        window.alert("Kuvia ei löytynyt")
-        break
     case 1:
         console.log("Case 1")
         document.getElementById("files1").style.display = "grid"
@@ -43,6 +42,9 @@ switch (folderContents.length) {
         break
 
     default:
+        if(folderContents.length <= 0) {
+            document.getElementById("noFiles").style.display = "block"
+        }
         if(folderContents.length > 4) {
             document.getElementById("tooManyFiles").style.display = "block"
             document.getElementById("files1").style.display = "none"
